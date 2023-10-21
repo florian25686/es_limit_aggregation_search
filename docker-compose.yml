@@ -19,9 +19,19 @@ services:
       # The two next lines can be removed after initial installation
       SYMFONY_VERSION: ${SYMFONY_VERSION:-}
       STABILITY: ${STABILITY:-stable}
+      MERCURE_EXTRA_DIRECTIVES: demo
+      # See https://xdebug.org/docs/all_settings#mode
+      XDEBUG_MODE: "${XDEBUG_MODE:-off}"
+    extra_hosts:
+      # Ensure that host.docker.internal is correctly defined on Linux
+      - host.docker.internal:host-gateway
     volumes:
       - caddy_data:/data
       - caddy_config:/config
+      - ./:/app
+      - ./frankenphp/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./frankenphp/conf.d/app.dev.ini:/usr/local/etc/php/conf.d/app.dev.ini:ro
+
     ports:
       # HTTP
       - target: 80
@@ -141,8 +151,3 @@ volumes:
   esdata01:
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###
-
-networks:
-  default:
-    name: elastic
-    external: false
