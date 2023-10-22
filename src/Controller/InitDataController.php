@@ -2,37 +2,22 @@
 
 namespace App\Controller;
 
-use Elastica\Client;
+use App\Services\ElasticClientService;
 use Elastica\Document;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class InitDataController
 {
-    private Client $elasticaClient;
-
     public function __construct(
+        private readonly ElasticClientService $elasticClientService,
     ) {
-        $this->elasticaClient = new Client(
-            [
-                'host' => 'es01',
-                'port' => 9200,
-                'transport' => 'https',
-                'username' => 'elastic',
-                'password' => 'random_password',
-                // Current Setup doesn't like self-signed certificates
-                'curl' => [
-                    CURLOPT_SSL_VERIFYPEER => false,
-                    CURLOPT_SSL_VERIFYHOST => false,
-                ]
-            ]
-        );
     }
 
     #[Route('/setup/index', methods: ['GET'])]
     public function setupIndex(): Response
     {
-        $elasticaIndex = $this->elasticaClient->getIndex('books');
+        $elasticaIndex = $this->elasticClientService->getElasticClient()->getIndex('books');
         $elasticaIndex->addDocuments($this->getExampleDocuments());
 
         return new Response(
