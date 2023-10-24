@@ -16,4 +16,3 @@ Copied from Symfony's Readme
 
 ## Install Elasticsearch
 1. Create a network `docker network create elastic`
-2. 
