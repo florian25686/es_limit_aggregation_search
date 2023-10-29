@@ -1,5 +1,5 @@
 # Elasticsearch aggregations sort demo
-This repo illustrates how to sort/limit elasticsearch aggregations to only show search results in the top half of the scores
+This repo illustrates how to sort/limit elasticsearch aggregations to only show search results in the top half of the scores.
 
 # Information
 This project is based on symfony's docker setup [README from Symfony](README_symfony.md) with an addition for elasticsearch
@@ -13,6 +13,3 @@ Copied from Symfony's Readme
 > 3. Run `docker compose up --pull -d --wait` to start the project
 > 4. Open `https://localhost` in your favorite web browser and [accept the auto-generated TLS certificate](https://stackoverflow.com/a/15076602/1352334)
 > 5. Run `docker compose down --remove-orphans` to stop the Docker containers.
-
-## Install Elasticsearch
-1. Create a network `docker network create elastic`

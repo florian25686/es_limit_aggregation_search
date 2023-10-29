@@ -6,6 +6,13 @@ use Elastica\Client;
 
 class ElasticClientService
 {
+    public function __construct(
+        private readonly string $elasticUsername,
+        private readonly string $elasticPassword,
+    )
+    {
+    }
+
     public function getElasticClient(): Client
     {
         return new Client(
@@ -13,8 +20,8 @@ class ElasticClientService
                 'host' => 'es01',
                 'port' => 9200,
                 'transport' => 'https',
-                'username' => 'elastic',
-                'password' => 'random_password',
+                'username' => $this->elasticUsername,
+                'password' => $this->elasticPassword, // random_password
                 // Current Setup doesn't like self-signed certificates
                 'curl' => [
                     CURLOPT_SSL_VERIFYPEER => false,

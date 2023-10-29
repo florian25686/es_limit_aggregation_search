@@ -7,7 +7,16 @@
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<div class="container">
+<div class="container mt-1">
+    <h1>Intro/Setup</h1>
+    <div class="container text-start px-0">
+    Start typing and see the results as dropdown. If no data are found you may want to <a href="{{ path('setup_index') }}">setup the index</a>
+    </div>
+
+</div>
+<div class="container mt-1">
+    <h2>Demo</h2>
+    If you've used the default data type in one of the following book genres: Science, Science Fiction, Science Fact, Novel, Fantasy, Romance, Fantasy Novel
     <input type="text" id="searchInput" placeholder="Type here..." oninput="searchItems()">
     <div id="dropdown" class="dropdown"></div>
 </div>
